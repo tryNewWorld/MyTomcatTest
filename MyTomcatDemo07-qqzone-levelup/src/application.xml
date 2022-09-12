@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans>
+    <bean id="user" class="com.xmx.qqzone.controller.UserController">
+        <property name="userService" rel="userService"></property>
+    </bean>
+
+    <bean id="userService" class="com.xmx.qqzone.service.impl.UserServiceImpl">
+        <property name="userDao" rel="userDao"></property>
+    </bean>
+
+    <bean id="userDao" class="com.xmx.qqzone.com.xmx.qqzone.dao.impl.UserDaoImpl"></bean>
+</beans>

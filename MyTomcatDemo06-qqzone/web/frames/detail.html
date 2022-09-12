@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/detail.css}">
+    <script language="JavaScript">
+        function showDelImg(imgId){
+            var obj = document.getElementById(imgId);
+            if(obj) {
+                obj.style.display='inline';
+            }
+
+        }
+        function hiddenDelImg(imgId){
+            var obj = document.getElementById(imgId);
+            if(obj) {
+                obj.style.display='none';
+            }
+        }
+
+        function delReply(replyId) {
+            if(confirm("是否删除该回复？")) {
+                window.location.href="reply.do?operate=delReply&replyId="+replyId;
+            }
+        }
+        function delLog(logId) {
+            if(confirm("是否删除该日志？")) {
+                window.location.href="log.do?operate=delLog&logId="+logId;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div_back_to_topic_list">
+        <a href="main.html">返回日志列表</a>
+    </div>
+    <div id="div_topic_detail">
+        <div id="div_topic_info">
+            <table id="tbl_topic_info">
+                <tr>
+                    <td rowspan="2" class="w14 h96">
+                        <div class="h64 center " style="width:100%;">
+                            <img class="img56 " th:src="@{|/imgs/${session.log.userBasic.head}|}"/>
+                        </div>
+                        <div class="h32 center" style="width:100%;" th:text="${session.log.userBasic.name}"></div>
+                    </td>
+                    <td class="topic_title" onmousemove="showDelImg('img01')" onmouseout="hiddenDelImg('img01')">
+                        <img th:onclick="|delLog(${session.log.id})|" th:if="${session.userBasic.id == session.log.userBasic.id}" id="img01" style="float: right;margin-top:2px;margin-right:2px;display: none;width:24px;height: 24px;" th:src="@{/imgs/del.jpg}"/>
+                        <span th:text="${session.log.title}"></span>
+                        <span class="title_date_right"  th:text="${session.log.publishTime}">2021-09-01 12:30:55</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="${session.log.context}"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="div_reply_list" th:each="reply : ${session.log.replyList}">
+            <table class="tbl_reply_info">
+                <tr>
+                    <td rowspan="2" class="w14 h88">
+                        <div class="h56 center" style="width:100%;">
+                            <img class="img48" th:src="@{|/imgs/${reply.userBasic.head}|}"/>
+                        </div>
+                        <div class="h32 center" style="width:100%;" th:text="${reply.userBasic.name}">段誉</div>
+                    </td>
+                    <td class="reply_title" th:onmouseover="|showDelImg('img${reply.id}')|" th:onmouseout="|hiddenDelImg('img${reply.id}')|">
+                        <span th:text="|回复：${session.log.title}|"></span>
+                        <img th:onclick="|delReply(${reply.id})|" th:if="${session.log.userBasic.id==session.userBasic.id || reply.userBasic.id == session.userBasic.id}" th:id="|img${reply.id}|" style="float: right;margin-top:2px;margin-right:2px;display: none;width:24px;height: 24px;" th:src="@{/imgs/del.jpg}"/>
+                        <span class="title_date_right" th:text="${reply.replyTime}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:onmouseover="|showDelImg('abq${reply.id}')|" th:onmouseout="|hiddenDelImg('abq${reply.id}')|">
+                        <span th:text="${reply.context}"></span><br/>
+                        <ul style="width: 96%;border:1px dotted lightgray;list-style-type: none;padding-left:8px;padding-right:8px;" th:if="${reply.hostReply.id != null}">
+                            <li style="color:#6e0000;font-size:12px;width: 100%;border:0px solid red;" th:text="${reply.hostReply.context}"></li>
+                            <li style="color:#6e0000;font-size:12px;width:100%;border:0px solid blue;text-align: right;margin-right: 8px;" th:text="|主人回复于: ${reply.hostReply.replyTime}|">2021/10/01 11:50:30</li>
+                        </ul>
+                        <a th:if="${session.userBasic.id == session.log.userBasic.id}" th:unless="${reply.hostReply.id != null}" th:id="|abq${reply.id}|" href="#" style="float: right;display: none;">主人回复</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="div_add_reply">
+        <p class="add_reply_title">添加回复</p>
+        <form th:action="@{reply.do}" method="get">
+            <input type="hidden" name="operate" th:value="addReply">
+            <input type="hidden" name="logId" th:value="${session.log.id}">
+            <table>
+                <tr>
+                    <th style="width: 25%">回复日志：</th>
+                    <td><input type="text" th:value="|《${session.log.title}》|" readonly /></td>
+                </tr>
+                <tr>
+                    <th>回复内容：</th>
+                    <td><textarea name="context" rows="3"></textarea></td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value=" 回 复 "/>
+                        <input type="reset" value=" 重 置 "/>
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans>
+    <bean id="page" class="com.xmx.myssm.controller.PageController"></bean>
+    <bean id="user" class="com.xmx.qqzone.controller.UserController">
+        <property name="userService" rel="userService"></property>
+        <property name="logService" rel="logService"></property>
+    </bean>
+    <bean id="log" class="com.xmx.qqzone.controller.LogController">
+        <property name="logService" rel="logService"></property>
+    </bean>
+    <bean id="reply" class="com.xmx.qqzone.controller.ReplyController">
+        <property name="replyService" rel="replyService"></property>
+    </bean>
+
+
+
+    <bean id="userService" class="com.xmx.qqzone.service.impl.UserServiceImpl">
+        <property name="userDao" rel="userDao"></property>
+    </bean>
+    <bean id="logService" class="com.xmx.qqzone.service.impl.LogServiceImpl">
+        <property name="logDao" rel="logDao"></property>
+        <property name="replyDao" rel="replyDao"></property>
+        <property name="userService" rel="userService"></property>
+        <property name="hostReplyDao" rel="hostReplyDao"></property>
+    </bean>
+    <bean id="replyService" class="com.xmx.qqzone.service.impl.ReplyServiceImpl">
+        <property name="replyDao" rel="replyDao"></property>
+        <property name="hostReplyDao" rel="hostReplyDao"></property>
+    </bean>
+
+    <bean id="userDao" class="com.xmx.qqzone.com.xmx.qqzone.dao.impl.UserDaoImpl"></bean>
+    <bean id="replyDao" class="com.xmx.qqzone.com.xmx.qqzone.dao.impl.ReplyDaoImpl"></bean>
+    <bean id="hostReplyDao" class="com.xmx.qqzone.com.xmx.qqzone.dao.impl.HostReplyDaoImpl"></bean>
+
+
+
+    <bean id="logDao" class="com.xmx.qqzone.com.xmx.qqzone.dao.impl.LogDaoImpl"></bean>
+
+</beans>

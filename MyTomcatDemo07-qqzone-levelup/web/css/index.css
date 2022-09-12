@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(113.58893008880955deg, rgba(10, 83, 122,1) 4.927083333333334%,rgba(129, 209, 201,1) 97.84374999999999%);
+}
+
+.container {
+    background: linear-gradient(113.58893008880955deg, rgba(186, 213, 241,1) 4.927083333333334%,rgba(42, 39, 107,1) 97.84374999999999%);
+    width: 80%;
+    height: 100%;
+    margin-left: 10%;
+    border-radius: 15px;
+    z-index: 10;
+    float: left;
+}
+
+.header {
+    background: linear-gradient(113.58893008880955deg, rgba(128, 234, 209,1) 4.927083333333334%,rgba(91, 52, 162,1) 97.84374999999999%);
+    width: 100%;
+    height: 10%;
+    border-radius: 15px;
+    float: left;
+}
+
+span {
+    font-size: 32px;
+    margin-bottom: 100px;
+    width: 60%;
+    height: 5vh;
+    margin-left: 20%;
+    margin-top: 20px;
+    color: rgba(211, 21, 87,1);
+    float: left;
+    text-align: center;
+}
+.left {
+    background: linear-gradient(113.58893008880955deg, rgba(231, 244, 245,1) 4.927083333333334%,rgba(78, 240, 250,1) 97.84374999999999%);
+    width: 30%;
+    height: 90%;
+    float: left;
+}
+
+.left li {
+    font-size: 20px;
+    width: 100%;
+    line-height: 4vh;
+    height: 5vh;
+    border: 1px solid grey;
+    list-style-type: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.left li img {
+    width: 5vh;
+    height: 5vh;
+}

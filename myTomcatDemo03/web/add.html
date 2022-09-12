@@ -1,0 +1,44 @@
+<!-- <!DOCTYPE html> -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>添加页面</title>
+    <link rel="stylesheet" href="./css/add.css"/>
+</head>
+
+<body>
+
+<div id="div_container">
+    <p class="center f30">添加水果信息页面</p>
+    <div id="div_fruit">
+        <form action="fruit.do" method="post">
+            <input type="hidden" name="operate" value="add">
+            <table id="tbl_fruit_list">
+                <tr>
+                    <th class="w20">名称:</th>
+                    <th><input type="text" name="name"/></th>
+                </tr>
+                <tr>
+                    <th class="w20">单价:</th>
+                    <th><input type="text" name="price"/></th>
+                </tr>
+                <tr>
+                    <th class="w20">数量:</th>
+                    <th><input type="text" name="count"/></th>
+                </tr>
+                <tr>
+                    <th class="w20">备注:</th>
+                    <th><input type="text" name="remark"/></th>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="添加"></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

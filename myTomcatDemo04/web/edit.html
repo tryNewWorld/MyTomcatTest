@@ -1,0 +1,45 @@
+<!-- <!DOCTYPE html> -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>修改页面</title>
+    <link rel="stylesheet" href="./css/edit.css"/>
+</head>
+
+<body>
+
+<div id="div_container">
+    <p class="center f30">修改水果信息页面</p>
+    <div id="div_fruit">
+        <form th:action="@{/fruit.do}" method="post" th:object="${fruit}">
+            <input type="hidden" name="operate" value="update">
+            <input type="hidden" name="id" th:value="*{id}">
+            <table id="tbl_fruit_list">
+                <tr>
+                    <th class="w20">名称:</th>
+                    <th><input type="text" name="name" th:value="*{name}"/></th>
+                </tr>
+                <tr>
+                    <th class="w20">单价:</th>
+                    <th><input type="text" name="price" th:value="*{price}"/></th>
+                </tr>
+                <tr>
+                    <th class="w20">数量:</th>
+                    <th><input type="text" name="count" th:value="*{count}"/></th>
+                </tr>
+                <tr>
+                    <th class="w20">备注:</th>
+                    <th><input type="text" name="remark" th:value="*{remark}"/></th>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="修改"></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

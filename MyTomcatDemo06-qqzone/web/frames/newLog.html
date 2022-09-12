@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增日志</title>
+</head>
+<body>
+    <div>
+        <form th:action="@{/log.do}" method="get">
+            <input type="hidden" name="operate" value="addLog">
+            标题：<input type="text" name="title"><br>
+            内容：<textarea name="context"></textarea>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</body>
+</html>
